@@ -30,6 +30,7 @@ public class DepartmentFormController implements Initializable {
 	private List<DataChangeListener> dataChangeListeners= new ArrayList<>();
 	
 	private Department entity;
+	
 	@FXML 
 	private TextField txtId;
 	
@@ -73,7 +74,7 @@ public class DepartmentFormController implements Initializable {
 		}catch(DbException e) {
 			Alerts.showAlert("Error saving object", null, e.getMessage(), AlertType.ERROR);
 		}catch(ValidationException e) {
-			setErrorMessages(e.getErrors());
+			setErrorMessage(e.getErrors());
 		}
 	}
 	
@@ -125,7 +126,7 @@ public class DepartmentFormController implements Initializable {
 		txtName.setText(entity.getName());
 	}
 	
-	private void setErrorMessages(Map<String,String> errors) {
+	private void setErrorMessage(Map<String,String> errors) {
 		Set<String> fields=errors.keySet();
 		if(fields.contains("Name")) {
 			labelErrorName.setText(errors.get("name"));
